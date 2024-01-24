@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MBController {
-    @GetMapping("jinyoun9.github.io")
+    @GetMapping("https://jinyoun9.github.io")
     public String boardList(){
         return "index";
     }
