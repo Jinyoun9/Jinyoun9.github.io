@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MBController {
-    @GetMapping("/list")
+    @GetMapping("jinyoun9.github.io/list")
     public String boardList(){
         return "boardlist";
     }
