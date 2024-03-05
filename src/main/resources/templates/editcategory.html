@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/categoryform.css}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" />
+    <title>카테고리 관리 페이지</title>
+</head>
+<body>
+<div class="container">
+    <h1>카테고리 관리</h1>
+    <form action="/addcategorypro" method="post">
+        <label for="categoryName">카테고리 이름:</label>
+        <input type="text" id="categoryName" name="category" required>
+        <input type="submit" value="추가">
+    </form>
+    <h2>카테고리 목록</h2>
+    <ul id="categoryList">
+        <li th:each="item:${categories}">
+            <div class = "btn-container">
+                <button class="contents" th:text = "${item.category}"></button>
+                <label>
+                    <input class="modifyCategoryInput" type="text" name="category" required>
+                </label>
+                <button class="modifyBtn" th:data-category = "${item.category}" th:data-id="${item.id}" onclick="modifyCategory()">
+                    <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="deleteBtn" th:data-id="${item.id}" onclick="deleteCategory(this.getAttribute('data-id'))">×</button>
+            </div>
+        </li>
+    </ul>
+    <div class="btn-group">
+        <button onclick="revealModify()">수정</button>
+        <button onclick="revealDelete()">삭제</button>
+    </div>
+</div>
+
+<script>
+    function revealModify() {
+        // 수정 버튼 보이기
+        document.querySelectorAll('.modifyBtn').forEach(button => {
+            button.style.visibility = 'visible';
+        });
+
+        // 삭제 버튼 숨기기
+        document.querySelectorAll('.deleteBtn').forEach(button => {
+            button.style.visibility = 'hidden';
+        });
+    }
+
+    function revealDelete() {
+        // 삭제 버튼 보이기
+        document.querySelectorAll('.deleteBtn').forEach(button => {
+            button.style.visibility = 'visible';
+        });
+
+        // 수정 버튼 숨기기
+        document.querySelectorAll('.modifyBtn').forEach(button => {
+            button.style.visibility = 'hidden';
+        });
+    }
+
+    function deleteCategory(dataId){
+        if (confirm('한 번 삭제한 내용은 복구할 수 없습니다. 삭제하시겠습니까?')) {
+            window.location.href = "http://localhost:8080/deletecategorypro/" + dataId;
+        }
+    }
+    function modifyCategory(){
+        document.querySelectorAll('.modifyCategoryInput').visibility= 'visible';
+    }
+
+</script>
+</body>
+</html>

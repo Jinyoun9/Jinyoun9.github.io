@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" th:href="@{/css/common.css}" type="text/css">
+</head>
+<style>
+    #modify, #delete{
+        text-decoration-line: none;
+        font-family: "맑은 고딕 Semilight";
+    }
+    th{
+        color: #FFFFFF;
+    }
+</style>
+<body>
+    <header>
+        <button id = "login" style="font-size: 16px">로그인</button>
+        <button id = "editCategory" style="font-size: 16px">카테고리 편집</button>
+        <button id = "write" style="font-size: 16px">글 쓰기</button>
+    </header>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 사용자가 로그인 버튼을 클릭했을 때 실행될 함수
+            document.getElementById('login').addEventListener('click', function() {
+                // 로그인 페이지(login.html)를 새 창으로 엽니다.
+                var loginWindow = window.open("/login", "_blank");
+
+                // 로그인 페이지가 로드되었을 때 실행될 코드
+                loginWindow.onload = function() {
+                    // 로그인 페이지에서 사용자 이름을 가져옵니다.
+                    var username = loginWindow.document.getElementById("userid").innerText;
+
+                    // 가져온 사용자 이름을 이용하여 로그인 버튼의 텍스트를 변경합니다.
+                    document.getElementById('login').innerText = username + "님";
+                };
+            });
+        });
+        document.getElementById('editCategory').addEventListener('click', function() {
+            // 버튼을 클릭했을 때 팝업 창을 열도록 JavaScript 코드를 작성
+            window.location.href = "http://localhost:8080/editcategory";
+        });
+        document.getElementById('write').addEventListener('click', function() {
+            // 버튼을 클릭했을 때 팝업 창을 열도록 JavaScript 코드를 작성
+            window.location.href = "http://localhost:8080/write";
+        });
+        function isDelete() {
+            const result = confirm("한 번 삭제한 글은 복구할 수 없습니다. 삭제 하시겠습니까?");
+            if(result){
+                location.href = 'http://localhost:8080/delete/' + document.getElementById('selectedId').value;
+            }
+        };
+        function toggleVisibility(category) {
+            const divs = document.querySelectorAll('[id^="' + category + '_div_"]');
+            divs.forEach(function (div) {
+                div.style.display = (div.style.display === 'none' || div.style.display === '') ? 'block' : 'none';
+            });
+            document.getElementsByTagName('article')[0].style.visibility = 'hidden';
+        }
+        function showContent(id, title, content, time) {
+            document.getElementById('selectedTitle').innerText = title;
+            document.getElementById('selectedContent').innerText = content;
+            document.getElementById('selectedTime').innerText = time;
+            document.getElementById('selectedId').value = id;
+            document.getElementsByTagName('article')[0].style.visibility = 'visible';
+        }
+
+    </script>
+    <div>
+        <aside>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>카테고리</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="category : ${categories}">
+                                <td>
+                                    <button class="categoryButton" style="padding-top: 10px; padding-bottom: 10px;" onclick="toggleVisibility(this.innerText)" th:id="${category.id}" th:text="${category.category}"></button>
+                                    <div style="display:none;" th:each="item: ${list}" th:if="${item.category eq category.category}" th:id="${category.category + '_div_'}">
+                                        <button th:text="' - ' + ${item.title}" th:data-id = "${item.id}" th:data-title="${item.title}" th:data-content="${item.content}" th:data-datetime = "${item.datetime}" onclick="showContent(this.getAttribute('data-id'), this.getAttribute('data-title'), this.getAttribute('data-content'), this.getAttribute('data-datetime'))"></button><br/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </aside>
+        <article>
+            <h2 id="selectedTitle"></h2>
+            <span id = "selectedId">
+                <h5 style="font-weight: normal" id="selectedTime"></h5>
+                <button id ="delete" style="color: red" onclick="isDelete()">삭제</button>
+                <button id="modify" onclick="location.href = 'http://localhost:8080/modify/' + document.getElementById('selectedId').value">수정</button>
+            </span>
+            <p id = "selectedContent"></p>
+        </article>
+    </div>
+
+
+</body>
+</html>
