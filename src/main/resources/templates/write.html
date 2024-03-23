@@ -1,0 +1,63 @@
+<!Doctype html>
+<html lang = "en"  xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <title>게시물 작성 폼</title>
+</head>
+<style>
+    .layout{
+        padding: 10%;
+    }
+    .titleInput{
+        width : 100%;
+        height: 70px;
+        font-size: large;
+        border: none;
+        outline: none;
+    }
+    .layout textarea{
+        width : 100%;
+        min-height: 300px;
+        border: none;
+        outline: none;
+    }
+    hr{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    button{
+        background: #B8FCCC;
+        color: #333333;
+        width: 50px;
+        height: 40px;
+        border: black;
+        border-radius: 10%;
+        font-family: "한컴 고딕";
+        cursor: pointer;
+    }
+</style>
+<body>
+<div class = "layout" >
+    <ul>
+        <li>
+            <button role="button"></button>
+        </li>
+    </ul>
+    <form action="/writepro" method = "post">
+        <select name="category">
+            <optgroup label="카테고리 선택">
+                <tr th:each="myboard: ${list}">
+                    <td>
+                        <option th:text="${myboard.category}" th:value="${myboard.category}"></option>
+                    </td>
+                </tr>
+            </optgroup>
+        </select>
+        <input class = "titleInput" name = "title" type = "text" placeholder="제목">
+        <hr>
+        <textarea name = "content" placeholder="내용을 입력하세요."></textarea>
+        <button type = "submit">작성</button>
+    </form>
+</div>
+</body>
+</html>

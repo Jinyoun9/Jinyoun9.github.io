@@ -1,0 +1,137 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 50%;
+    padding: 10px;
+    margin-top: 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+.btn-container {
+    display: flex; /* 자식 요소를 플렉스 컨테이너로 설정 */
+    align-items: flex-start; /* 자식 요소를 세로로 위로 정렬합니다. */
+}
+.contents{
+    display: block;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #00e063;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+.contents:hover {
+    background-color: #007f44;
+}
+.btn-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.btn-group button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #dc3545;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-group button:hover, .deleteBtn:hover {
+    background-color: #c82333;
+}
+
+#categoryList{
+    position: relative;
+}
+.deleteBtn{
+    width: 10px;
+    height: 13px;
+    border-radius: 50%;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    visibility: hidden;
+    position: absolute;
+}
+.modifyBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+}
+.modifyCategoryInput{
+    visibility: hidden;
+    position: absolute;
+    width: auto; /* 입력 창의 너비를 100%로 설정하여 라벨의 크기에 맞춤 */
+    height: inherit; /* 라벨의 높이와 동일하게 입력 창의 높이를 상속받음 */
+    box-sizing: border-box; /* 너비와 높이에 패딩과 테두리를 포함시킴 */
+}

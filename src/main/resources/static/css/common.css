@@ -1,0 +1,54 @@
+body{
+    background-color: #171717;
+}
+header > button{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+.categoryButton{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    background-color: transparent;
+    padding: 10px;
+}
+div{
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* 화면 전체 높이에 대한 100% 설정 */
+}
+aside{
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+article{
+    flex: 9;
+    overflow-y: auto;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: floralwhite;
+}
+span{
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center; /* 수직 가운데 정렬 */
+    gap: 10px; /* 요소 사이 간격 조절 */
+}

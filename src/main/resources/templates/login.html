@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+</head>
+<style>
+    .loginForm{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 10px;
+        border: #dddddd solid;
+        width: 300px;
+        height: 300px;
+        display: flex; /* display flex로 설정 */
+        flex-direction: column; /* 위에서 아래로 정렬 (열) */
+        justify-content: center; /* flex-derction 방향 가운데 정렬*/
+        align-items:center; /* justify와 수직축 방향 가운데 정렬 */
+    }
+    .inputID, .inputPW{
+        width: 250px;
+        height: 40px;
+        outline-color: #B8FCCC;
+    }
+    h3{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 258px;
+        height: 40px;
+    }
+    #joinSubmit, #loginSubmit{
+        display: flex;
+        flex: 1;
+        font-size: 15px;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        color: #333333;
+        border-style: hidden;
+        text-decoration: none;
+    }
+    #joinSubmit:hover, #loginSubmit:hover{
+        text-decoration: underline;
+    }
+</style>
+<body>
+    <div class = "loginForm">
+        <form action="/loginpro" method="post">
+            <h3>로그인</h3>
+            <input type="text" class="inputID" name="username" placeholder="아이디"><br>
+            <input type="password" class="inputPW" name="password" placeholder="비밀번호"><br><br>
+            <nav>
+                <button id="loginSubmit" type="submit">로그인</button>
+                <button id="joinSubmit" type="submit">회원가입</button>
+            </nav>
+
+        </form>
+    </div>
+</body>
+</html>

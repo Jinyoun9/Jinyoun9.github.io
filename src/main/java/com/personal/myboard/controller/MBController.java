@@ -21,9 +21,8 @@ public class MBController {
     private String formattedDateTime;
     @Autowired
     private MBService mbService;
-    private boolean writeRight;
     private LoginService login;
-    @GetMapping("/index")
+    @GetMapping("jinyoun9.github.io/index")
     public String Home(Model model){
         model.addAttribute("categories", mbService.categoriesList());
         model.addAttribute("list", mbService.myboardList());
@@ -106,9 +105,8 @@ public class MBController {
     public String loginPro(Member member, Model model) {
         String inputID = member.getUsername();
         String inputPW = member.getPassword();
-        Member inputMember = new Member();
-        inputMember = inputMember.init();
-        if(inputMember.getUsername().equals(inputID) && inputMember.getPassword().equals(inputPW)){
+        Member compareMember = mbService.login();
+        if(compareMember.getUsername().equals(inputID) && compareMember.getPassword().equals(inputPW)){
             model.addAttribute("message", inputID+"님 환영합니다.");
             model.addAttribute("searchUrl", "/index");
         }
@@ -116,5 +114,6 @@ public class MBController {
             model.addAttribute("message", "아이디 혹은 비밀번호가 일치하지 않습니다.");;
         }
         return "message";
+
     }
 }
